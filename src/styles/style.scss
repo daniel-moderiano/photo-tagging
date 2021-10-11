@@ -1,3 +1,41 @@
 @use 'global';
 
+body {
+  width: 100%;
+  height: 100vh;
+  background-color: rgb(97, 95, 105);
+  color: white;
+  font-size: 24px;
+  font-family: var(--font-stack);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.header {
+  background-color: rgb(54, 53, 58);
+  height: 5rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.main {
+  margin-top: 5rem;
+}
+
+.img {
+
+  .img-container {
+    width: 1200px;
+
+    img {
+      width: 100%;
+    }
+  }
+}
 
