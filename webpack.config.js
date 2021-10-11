@@ -21,11 +21,17 @@ module.exports = {
         type: "asset",
       },
       {
-        test: /\.css$/,
+        test: /\.s?css$/i,
         use: [
           MiniCssExtractPlugin.loader, 
           "css-loader", 
-        ],
+          "sass-loader"
+        ]
+      },
+      {
+        // This loader converts the HTML template to a string, then bundles accordingly, meaning images with relative /src paths will be converted correctly with dist images
+        test: /\.html$/i,
+        loader: "html-loader",
       },
     ],
   },

@@ -1,4 +1,3 @@
-import './styles/reset.css';
-import './styles/style.css';
+import './styles/style.scss';
 
 console.log('JS running');
