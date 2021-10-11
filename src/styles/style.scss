@@ -5,7 +5,6 @@ body {
   height: 100vh;
   background-color: rgb(97, 95, 105);
   color: white;
-  font-size: 24px;
   font-family: var(--font-stack);
   display: flex;
   align-items: center;
@@ -40,13 +39,40 @@ body {
   }
 }
 
-.reticle {
+// .popup {
+//   display: none;
+//   position: absolute;
+// }
+
+.popup__reticle {
   display: none;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   height: 50px;
   width: 50px;
   position: absolute;
+}
+
+.popup__menu {
+  position: absolute;
+  display: none;
+  // height: 5rem;
+  // width: 5rem;
+  margin-left: 50px;
+  background-color: rgb(48, 48, 48);
+
+  ul {
+
+    li {
+      font-size: 1rem;
+      padding: 1rem;
+    }
+
+    li:hover {
+      background-color: rgb(95, 95, 95);
+      cursor: pointer;
+    }
+  }
 }
 
 [data-id="0"] {
