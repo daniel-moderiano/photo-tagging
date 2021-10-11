@@ -32,6 +32,7 @@ body {
 
   .img-container {
     width: 1200px;
+    position: relative;
 
     img {
       width: 100%;
@@ -39,3 +40,42 @@ body {
   }
 }
 
+.reticle {
+  display: none;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  height: 50px;
+  width: 50px;
+  position: absolute;
+}
+
+[data-id="0"] {
+  width: 50%;
+  height: 50%;
+  border-top: 2px solid white;
+  border-left: 2px solid white;
+}
+
+[data-id="1"] {
+  width: 50%;
+  height: 50%;
+  border-top: 2px solid white;
+  border-right: 2px solid white;
+  place-self: start end;
+}
+
+[data-id="2"] {
+  width: 50%;
+  height: 50%;
+  border-left: 2px solid white;
+  border-bottom: 2px solid white;
+  place-self: end start;
+}
+
+[data-id="3"] {
+  width: 50%;
+  height: 50%;
+  border-right: 2px solid white;
+  border-bottom: 2px solid white;
+  place-self: end end;
+}
