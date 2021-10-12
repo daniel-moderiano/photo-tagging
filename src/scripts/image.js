@@ -99,4 +99,10 @@ function character(top, left, width, height) {
     isWithinBounds,
     isFound,
   }
+};
+
+const waldoChar = character(1135, 1026, 78, 120);
+
+export {
+  character,
 }
