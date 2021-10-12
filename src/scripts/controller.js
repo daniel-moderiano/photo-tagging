@@ -2,8 +2,9 @@ import { characters } from './model';
 import { updateHeaderCards, displayReticleAtCursor, displayPopupMenuAtCursor } from './view';
 
 const img = document.querySelector('.img__warp-core');
+const popupMenu = document.querySelector('.popup__list');
 
-
+let coordinates = {};
 
 const getClickCoordinates = (e) => {
   const rect = e.target.getBoundingClientRect();
@@ -12,45 +13,57 @@ const getClickCoordinates = (e) => {
   return { top: y, left: x };
 }
 
-// Calculate the position of the mouse click relative the the top and left of the image 
-img.addEventListener('click', (e) => {
-  // Get size of image/div 
-  const coordinates = getClickCoordinates(e);
-  // console.log("Left? : " + coordinates.left + " ; Top? : " + coordinates.top + ".");
-})
 
+// Checks for ANY non-found character at location of user's click (coordinates) but does not modify found value
 const checkForCharClick = (clickCoordinates) => {
+  let charClicked = [];
   characters.forEach((character) => {
     if (character.isWithinBounds(clickCoordinates.top, clickCoordinates.left)) {
       console.log(`${character.name} clicked`);
       if (!character.isFound()) {
-        character.toggleFound();
-        return true;
+        charClicked.push(character.name);
       }
     } 
   });
-  console.log('Missed');
+  return charClicked;
 }
 
-// The above function may be adapted to give a target 'area' on the click, rather than a pinpoint for UI purposes. However, a pinpoint click can be used for verification if it exists within a 'box' containing the character 
 
-// Places the reticle centered over the mouse when the image is clicked
-window.addEventListener('click', (e) => {
-  if (e.target === img) {    
-    const coordinates = getClickCoordinates(e);
-    displayReticleAtCursor(coordinates);
-    displayPopupMenuAtCursor(coordinates);   
-    
-    checkForCharClick(coordinates);
-
-    if (checkForCharClick(coordinates) === true) {
-      // Set error/success DOM element to display
+// Event propagation on popup ul element to catch user clicking on list item
+popupMenu.addEventListener('click', (e) => {
+  const charClicked = checkForCharClick(coordinates)
+  if (e.target.classList.contains('popup__list-item')) {
+    if (charClicked.length > 0) {
+      if (e.target.dataset.name === charClicked[0]) {
+        console.log(`Found ${e.target.dataset.name}!`);
+        const charFound = characters.filter((char) => char.name === charClicked[0]);
+        charFound[0].toggleFound();
+      } else {
+        console.log('Miss');
+      }
+    } else {
+      console.log('Miss');
     }
-  } else {
-    // Remove reticle when clicking outside image, or clicking on the same spot twice
-    popupMenu.style.display = 'none';
-    reticle.style.display = 'none';
+    updateHeaderCards();
   }
 });
 
-// Rect sizes for warp core sized at 1200px, relative to edge of warp core img
+window.addEventListener('click', (e) => {
+  // All image-related functions should only be fired when the user actually clicks within the image boundaries.
+  if (e.target === img) {    
+    coordinates = getClickCoordinates(e);
+    console.log(coordinates);
+    
+    displayReticleAtCursor(coordinates);
+    displayPopupMenuAtCursor(coordinates);   
+    
+    
+
+
+
+  } else {
+    // Remove reticle when clicking outside image, or clicking on the same spot twice
+    document.querySelector('.popup__menu').style.display = 'none';
+    document.querySelector('.popup__reticle').style.display = 'none';
+  }
+});

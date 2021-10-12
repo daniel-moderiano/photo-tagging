@@ -1,12 +1,16 @@
 import { characters } from "./model";
 
+// Reducing opacity of image in header character cards visually indicates that they have been found.
 const updateHeaderCards = () => {
   characters.forEach((char) => {
     if (char.isFound()) {
       document.querySelector(`[data-name='${char.name}']`).style.opacity = '10%';
     }
+    console.log(char.name, char.isFound());
   });
 };
+
+// TODO: function to alter the popopMenu perhaps with a strikethrough for characters that have been found?
 
 // Sets reticle element to the user's position. 
 const displayReticleAtCursor = (coordinates) => {

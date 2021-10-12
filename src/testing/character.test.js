@@ -1,4 +1,4 @@
-import character from '../scripts/character'
+import character from '../scripts/character';
 
 // Testing the character module
 test('character function correctly initialises maxTop', () => {
