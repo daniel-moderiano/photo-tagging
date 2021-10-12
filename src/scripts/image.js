@@ -104,5 +104,6 @@ function character(top, left, width, height) {
 const waldoChar = character(1135, 1026, 78, 120);
 
 export {
+  waldoChar,
   character,
 }
