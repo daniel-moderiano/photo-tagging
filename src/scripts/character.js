@@ -13,7 +13,17 @@ function character(top, left, width, height) {
   const maxLeft = minLeft + width;
 
   // Check, given a top and left mouse coordinate within warp core img, whether those coordinates are within the bounds of this character
-  const isWithinBounds = (top, left) => {console.log('hello')}
+  const isWithinBounds = (clickTop, clickLeft) => {
+    if (clickTop <= minTop || clickTop >= maxTop) {
+      return false;
+    }
+
+    if (clickLeft <= left || clickLeft >= maxLeft) {
+      return false;
+    }
+
+    return true;
+  }
 
   return {
     minTop,
