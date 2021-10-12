@@ -1,9 +1,9 @@
 import { characters } from './model';
-import { updateHeaderCards } from './view';
+import { updateHeaderCards, displayReticleAtCursor, displayPopupMenuAtCursor } from './view';
 
 const img = document.querySelector('.img__warp-core');
-const reticle = document.querySelector('.popup__reticle');
-const popupMenu = document.querySelector('.popup__menu');
+
+
 
 const getClickCoordinates = (e) => {
   const rect = e.target.getBoundingClientRect();
@@ -36,19 +36,13 @@ const checkForCharClick = (clickCoordinates) => {
 
 // Places the reticle centered over the mouse when the image is clicked
 window.addEventListener('click', (e) => {
-  if (e.target === img) {
-    reticle.style.display = 'grid';
-    popupMenu.style.display = 'block';
+  if (e.target === img) {    
     const coordinates = getClickCoordinates(e);
-    // 25px is chosen because of the width of the reticle at 50px
-    reticle.style.top = `${coordinates.top - 25}px`;
-    reticle.style.left = `${coordinates.left - 25}px`;
-    popupMenu.style.top = `${coordinates.top + 25}px`;
-    popupMenu.style.left = `${coordinates.left - 25}px`;
+    displayReticleAtCursor(coordinates);
+    displayPopupMenuAtCursor(coordinates);   
+    
     checkForCharClick(coordinates);
-    characters.forEach((character) => {
-      console.log(`${character.name} found yet: ` + character.isFound());
-    })
+
     if (checkForCharClick(coordinates) === true) {
       // Set error/success DOM element to display
     }

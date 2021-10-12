@@ -8,4 +8,25 @@ const updateHeaderCards = () => {
   });
 };
 
-export { updateHeaderCards };
+// Sets reticle element to the user's position. 
+const displayReticleAtCursor = (coordinates) => {
+  const reticle = document.querySelector('.popup__reticle');
+  reticle.style.display = 'grid';
+  // 25px is used because the reticle element has height/width of 50px. If this size is changed, this function should be changed to 1/2 of the new dimensions. As should popupMenu func.
+  reticle.style.top = `${coordinates.top - 25}px`;
+  reticle.style.left = `${coordinates.left - 25}px`;
+};
+
+// Sets popup menu to the user's cursor position, but with reticle placement in mind
+const displayPopupMenuAtCursor = (coordinates) => {
+  const popupMenu = document.querySelector('.popup__menu');
+  popupMenu.style.display = 'block';
+  popupMenu.style.top = `${coordinates.top + 25}px`;
+  popupMenu.style.left = `${coordinates.left - 25}px`;
+};
+
+export { 
+  updateHeaderCards, 
+  displayPopupMenuAtCursor, 
+  displayReticleAtCursor,
+};
