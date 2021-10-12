@@ -1,2 +1,2 @@
 import './styles/style.scss';
-import './scripts/image'
+import './scripts/controller';
