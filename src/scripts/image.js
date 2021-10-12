@@ -4,6 +4,14 @@ const img = document.querySelector('.img__warp-core');
 const reticle = document.querySelector('.popup__reticle');
 const popupMenu = document.querySelector('.popup__menu');
 
+const waldo = character('Waldo', 1135, 1026, 78, 120);
+const yoda = character('Yoda', 1370, 720, 74, 110);
+const walle = character('Wall·E', 438, 1033, 95, 95);
+const groot = character('Baby Groot', 1300, 300, 58, 68);
+const robocop = character('Robocop', 580, 422, 40, 40);
+
+const characters = [waldo, yoda, walle, groot, robocop];
+
 const getClickCoordinates = (e) => {
   const rect = e.target.getBoundingClientRect();
   const x = e.clientX - rect.left; //x position within the element.
@@ -15,8 +23,18 @@ const getClickCoordinates = (e) => {
 img.addEventListener('click', (e) => {
   // Get size of image/div 
   const coordinates = getClickCoordinates(e);
-  console.log("Left? : " + coordinates.left + " ; Top? : " + coordinates.top + ".");
+  // console.log("Left? : " + coordinates.left + " ; Top? : " + coordinates.top + ".");
 })
+
+const checkForCharClick = (clickCoordinates) => {
+  characters.forEach((character) => {
+    if (character.isWithinBounds(clickCoordinates.top, clickCoordinates.left)) {
+      console.log(`${character.name} clicked`);
+      return;
+    } 
+  });
+  console.log('Missed');
+}
 
 // The above function may be adapted to give a target 'area' on the click, rather than a pinpoint for UI purposes. However, a pinpoint click can be used for verification if it exists within a 'box' containing the character 
 
@@ -31,6 +49,7 @@ window.addEventListener('click', (e) => {
     reticle.style.left = `${coordinates.left - 25}px`;
     popupMenu.style.top = `${coordinates.top + 25}px`;
     popupMenu.style.left = `${coordinates.left - 25}px`;
+    checkForCharClick(coordinates);
   } else {
     // Remove reticle when clicking outside image, or clicking on the same spot twice
     popupMenu.style.display = 'none';
@@ -40,10 +59,5 @@ window.addEventListener('click', (e) => {
 
 // Rect sizes for warp core sized at 1200px, relative to edge of warp core img
 
-const waldo = character(1135, 1026, 78, 120);
-const yoda = character(1370, 720, 74, 110);
-const walle = character(438, 1033, 95, 95);
-const groot = character(1300, 300, 58, 68);
-const robocop = character(580, 422, 40, 40);
 
-console.log(waldo);
+

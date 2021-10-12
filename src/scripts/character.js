@@ -1,5 +1,5 @@
 // Use a factory function to generate character objects with data about their location, whether they have yet been found, and methods to determine when/if they are clicked/found
-function character(top, left, width, height) {
+function character(name, top, left, width, height) {
 
   let found = false;
 
@@ -26,6 +26,7 @@ function character(top, left, width, height) {
   }
 
   return {
+    name,
     minTop,
     maxTop,
     minLeft,
