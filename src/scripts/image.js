@@ -30,7 +30,10 @@ const checkForCharClick = (clickCoordinates) => {
   characters.forEach((character) => {
     if (character.isWithinBounds(clickCoordinates.top, clickCoordinates.left)) {
       console.log(`${character.name} clicked`);
-      return;
+      if (!character.isFound()) {
+        character.toggleFound();
+        return true;
+      }
     } 
   });
   console.log('Missed');
@@ -49,7 +52,12 @@ window.addEventListener('click', (e) => {
     reticle.style.left = `${coordinates.left - 25}px`;
     popupMenu.style.top = `${coordinates.top + 25}px`;
     popupMenu.style.left = `${coordinates.left - 25}px`;
-    checkForCharClick(coordinates);
+    characters.forEach((character) => {
+      console.log(`${character.name} found yet: ` + character.isFound());
+    })
+    if (checkForCharClick(coordinates) === true) {
+      // Set error/success DOM element to display
+    }
   } else {
     // Remove reticle when clicking outside image, or clicking on the same spot twice
     popupMenu.style.display = 'none';

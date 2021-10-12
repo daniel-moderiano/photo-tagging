@@ -5,6 +5,14 @@ function character(name, top, left, width, height) {
 
   const isFound = () => {
     return found;
+  };
+
+  const toggleFound = () => {
+    if (found) {
+      found = false;
+    } else {
+      found = true;
+    }
   }
 
   const minTop = top;
@@ -33,6 +41,7 @@ function character(name, top, left, width, height) {
     maxLeft,
     isWithinBounds,
     isFound,
+    toggleFound,
   }
 };
 
