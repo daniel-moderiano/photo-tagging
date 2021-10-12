@@ -12,8 +12,9 @@ body {
 }
 
 .header {
+  z-index: 1;
   background-color: rgb(54, 53, 58);
-  height: 5rem;
+  height: 7rem;
   position: fixed;
   top: 0;
   left: 0;
@@ -21,6 +22,26 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.header__chars {
+  display: flex;
+  height: 100%;
+}
+
+.char-card {
+  height: 100%;
+  width: 6rem;
+  margin: 0 0.5rem;
+  padding-top: 0.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-direction: column;
+}
+
+.char-img {
+  height: 70%;
 }
 
 .main {
