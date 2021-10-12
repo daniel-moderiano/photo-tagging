@@ -1,6 +1,5 @@
 const img = document.querySelector('.img__warp-core');
 const reticle = document.querySelector('.popup__reticle');
-const popup = document.querySelector('.popup');
 const popupMenu = document.querySelector('.popup__menu');
 
 const getClickCoordinates = (e) => {
@@ -22,21 +21,55 @@ img.addEventListener('click', (e) => {
 // Places the reticle centered over the mouse when the image is clicked
 window.addEventListener('click', (e) => {
   if (e.target === img) {
-    // popup.style.display = 'block';
     reticle.style.display = 'grid';
     popupMenu.style.display = 'block';
     const coordinates = getClickCoordinates(e);
     // 25px is chosen because of the width of the reticle at 50px
-    // popup.style.top = `${coordinates.y - 25}px`;
-    // popup.style.left = `${coordinates.x - 25}px`;
     reticle.style.top = `${coordinates.y - 25}px`;
     reticle.style.left = `${coordinates.x - 25}px`;
     popupMenu.style.top = `${coordinates.y + 25}px`;
     popupMenu.style.left = `${coordinates.x - 25}px`;
   } else {
     // Remove reticle when clicking outside image, or clicking on the same spot twice
-    // popup.style.display = 'none';
     popupMenu.style.display = 'none';
     reticle.style.display = 'none';
   }
-})
+});
+
+// Rect sizes for warrp core sized at 1200px, relative to edge of warp core img
+
+// Robocop
+const robocop = {
+  top: 580,
+  left: 422,
+  width: 40,
+  height: 40,
+};
+
+const walle = {
+  top: 435,
+  left: 1030,
+  width: 100,
+  height: 100,
+};
+
+const groot = {
+  top: 1300,
+  left: 300,
+  width: 58,
+  height: 68,
+};
+
+const yoda = {
+  top: 1370,
+  left: 720,
+  width: 74,
+  height: 110,
+};
+
+const waldo = {
+  top: 1135,
+  left: 1026,
+  width: 78,
+  height: 120,
+};
