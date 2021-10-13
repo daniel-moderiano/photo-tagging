@@ -38,6 +38,9 @@ popupMenu.addEventListener('click', (e) => {
         console.log(`Found ${e.target.dataset.name}!`);
         const charFound = characters.filter((char) => char.name === charClicked[0]);
         charFound[0].toggleFound();
+        // Toggle UI on popup menu itself
+        e.target.style.textDecoration = 'line-through';
+        e.target.style.color = '#646464'
       } else {
         console.log('Miss');
       }
