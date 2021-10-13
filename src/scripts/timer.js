@@ -1,9 +1,11 @@
 function Timer() {
-  const start = new Date().getTime();
   let elapsed = '0.0';
+  let running = false;
 
   // Run set interval function every 100 ms
   const begin = () => {
+    running = true;
+    const start = new Date().getTime();
     const runningTimer = setInterval(() => {
       // Reset the current time using the Date API and fixed start variable, rather than relying on accurate 100ms intervals with the setInterval function
       const time = new Date().getTime() - start;
@@ -24,9 +26,15 @@ function Timer() {
     clearInterval(interval);
   };
 
+  const getFinalTime = () => elapsed;
+
+  const isRunning = () => running;
+
   return {
     begin,
     end,
+    getFinalTime,
+    isRunning,
   }
 }
 
