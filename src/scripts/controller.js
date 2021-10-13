@@ -26,6 +26,11 @@ const checkForCharClick = (clickCoordinates) => {
     } 
   });
   return charClicked;
+};
+
+// Will return true if there are any characters that remain to be found. Use to control timer and other 'game-ending' features
+const anyCharsRemaining = () => {
+  return characters.some((char) => !char.isFound());
 }
 
 
@@ -40,7 +45,8 @@ popupMenu.addEventListener('click', (e) => {
         charFound[0].toggleFound();
         // Toggle UI on popup menu itself
         e.target.style.textDecoration = 'line-through';
-        e.target.style.color = '#646464'
+        e.target.style.color = '#646464';
+        console.log(anyCharsRemaining());
       } else {
         console.log('Miss');
       }
@@ -55,15 +61,8 @@ window.addEventListener('click', (e) => {
   // All image-related functions should only be fired when the user actually clicks within the image boundaries.
   if (e.target === img) {    
     coordinates = getClickCoordinates(e);
-    console.log(coordinates);
-    
     displayReticleAtCursor(coordinates);
     displayPopupMenuAtCursor(coordinates);   
-    
-    
-
-
-
   } else {
     // Remove reticle when clicking outside image, or clicking on the same spot twice
     document.querySelector('.popup__menu').style.display = 'none';

@@ -16,4 +16,5 @@ const characters = [
   robocop,
 ];
 
+
 export { characters };
