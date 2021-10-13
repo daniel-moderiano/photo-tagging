@@ -1,5 +1,5 @@
 import { characters } from './model';
-import { updateHeaderCards, displayReticleAtCursor, displayPopupMenuAtCursor } from './view';
+import { updateHeaderCards, displayReticleAtCursor, displayPopupMenuAtCursor, updatePopupMenu } from './view';
 import Timer from './timer';
 
 const img = document.querySelector('.img__warp-core');
@@ -45,18 +45,18 @@ popupMenu.addEventListener('click', (e) => {
       if (e.target.dataset.name === charClicked[0]) {
         const charFound = characters.filter((char) => char.name === charClicked[0]);
         charFound[0].toggleFound();
+        // TODO: Found success message, make in view module
         // Toggle UI on popup menu itself
-        e.target.style.textDecoration = 'line-through';
-        e.target.style.color = '#646464';
+        updatePopupMenu(e.target);
         if (!anyCharsRemaining()) {
           timer.end(runningTimer);
           console.log(timer.getFinalTime());
         }
       } else {
-        console.log('Miss');
+        // TODO: Miss error message, make in view module
       }
     } else {
-      console.log('Miss');
+      // TODO: Miss error message, make in view module
     }
     updateHeaderCards();
   }

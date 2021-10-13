@@ -6,11 +6,14 @@ const updateHeaderCards = () => {
     if (char.isFound()) {
       document.querySelector(`[data-name='${char.name}']`).style.opacity = '10%';
     }
-    console.log(char.name, char.isFound());
   });
 };
 
 // TODO: function to alter the popopMenu perhaps with a strikethrough for characters that have been found?
+const updatePopupMenu = (element) => {
+  element.style.textDecoration = 'line-through';
+  element.target.style.color = '#646464';
+}
 
 // Sets reticle element to the user's position. 
 const displayReticleAtCursor = (coordinates) => {
@@ -33,4 +36,5 @@ export {
   updateHeaderCards, 
   displayPopupMenuAtCursor, 
   displayReticleAtCursor,
+  updatePopupMenu,
 };
