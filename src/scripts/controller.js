@@ -1,10 +1,18 @@
 import { characters } from './model';
 import { updateHeaderCards, displayReticleAtCursor, displayPopupMenuAtCursor } from './view';
+import Timer from './timer';
 
 const img = document.querySelector('.img__warp-core');
 const popupMenu = document.querySelector('.popup__list');
 
 let coordinates = {};
+
+const timer = Timer();
+const runningTimer = timer.begin();
+
+setTimeout(() => {
+  timer.end(runningTimer);
+}, 5000);
 
 const getClickCoordinates = (e) => {
   const rect = e.target.getBoundingClientRect();
