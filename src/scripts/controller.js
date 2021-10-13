@@ -1,4 +1,4 @@
-import { characters } from './model';
+import { characters, anyCharsRemaining } from './model';
 import { updateHeaderCards, displayReticleAtCursor, displayPopupMenuAtCursor, updatePopupMenu } from './view';
 import Timer from './timer';
 
@@ -10,6 +10,7 @@ let coordinates = {};
 const timer = Timer();
 let runningTimer;
 
+// Returns the coordinates of the cursor on click relative to the bounding element (warp core img in this case)
 const getClickCoordinates = (e) => {
   const rect = e.target.getBoundingClientRect();
   const x = e.clientX - rect.left; //x position within the element.
@@ -31,12 +32,6 @@ const checkForCharClick = (clickCoordinates) => {
   return charClicked;
 };
 
-// Will return true if there are any characters that remain to be found. Use to control timer and other 'game-ending' features
-const anyCharsRemaining = () => {
-  return characters.some((char) => !char.isFound());
-}
-
-
 // Event propagation on popup ul element to catch user clicking on list item
 popupMenu.addEventListener('click', (e) => {
   const charClicked = checkForCharClick(coordinates)
@@ -50,7 +45,7 @@ popupMenu.addEventListener('click', (e) => {
         updatePopupMenu(e.target);
         if (!anyCharsRemaining()) {
           timer.end(runningTimer);
-          console.log(timer.getFinalTime());
+          console.log(timer.getCurrentTime());
         }
       } else {
         // TODO: Miss error message, make in view module
@@ -62,9 +57,11 @@ popupMenu.addEventListener('click', (e) => {
   }
 });
 
+// Global event listener
 window.addEventListener('click', (e) => {
   // All image-related functions should only be fired when the user actually clicks within the image boundaries.
-  if (e.target === img) {    
+  if (e.target === img) {
+    // Ensure the timer is started on first image click only
     if (!timer.isRunning()) {
       runningTimer = timer.begin();
     }
