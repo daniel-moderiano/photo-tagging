@@ -4,6 +4,7 @@ import Timer from './timer';
 
 const img = document.querySelector('.img__warp-core');
 const popupMenu = document.querySelector('.popup__list');
+const completeModal = document.querySelector('.complete-modal');
 
 // Display a modal
 function displayModal(modal) {
@@ -21,6 +22,8 @@ function outsideClick(e, modal) {
     modal.style.display = 'none';
   }
 }
+
+window.addEventListener('click', outsideClick);
 
 let coordinates = {};
 
@@ -62,6 +65,8 @@ popupMenu.addEventListener('click', (e) => {
         if (!anyCharsRemaining()) {
           timer.end(runningTimer);
           console.log(timer.getCurrentTime());
+          // Toggle complete-modal 
+          displayModal(completeModal);
         }
       } else {
         // TODO: Miss error message, make in view module

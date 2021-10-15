@@ -9,10 +9,9 @@ const updateHeaderCards = () => {
   });
 };
 
-// TODO: function to alter the popopMenu perhaps with a strikethrough for characters that have been found?
 const updatePopupMenu = (element) => {
   element.style.textDecoration = 'line-through';
-  element.target.style.color = '#646464';
+  element.style.color = '#646464';
 }
 
 // Sets reticle element to the user's position. 
