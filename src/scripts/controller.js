@@ -5,6 +5,23 @@ import Timer from './timer';
 const img = document.querySelector('.img__warp-core');
 const popupMenu = document.querySelector('.popup__list');
 
+// Display a modal
+function displayModal(modal) {
+  modal.style.display = 'flex';
+}
+
+// Close a modal
+function closeModal(modal) {
+  modal.style.display = 'none';
+}
+
+// Close a modal on outside click (generally added to window as an event listener)
+function outsideClick(e, modal) {
+  if (e.target === modal) {
+    modal.style.display = 'none';
+  }
+}
+
 let coordinates = {};
 
 const timer = Timer();
@@ -17,7 +34,6 @@ const getClickCoordinates = (e) => {
   const y = e.clientY - rect.top; //y position within the element.
   return { top: y, left: x };
 }
-
 
 // Checks for ANY non-found character at location of user's click (coordinates) but does not modify found value
 const checkForCharClick = (clickCoordinates) => {
