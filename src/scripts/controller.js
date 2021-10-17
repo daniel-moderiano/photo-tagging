@@ -5,6 +5,12 @@ import Timer from './timer';
 const img = document.querySelector('.img__warp-core');
 const popupMenu = document.querySelector('.popup__list');
 const completeModal = document.querySelector('.complete-modal');
+const submitBtn = document.querySelector('.modal__submit');
+const cancelBtn = document.querySelector('.modal__cancel');
+const homeBtn = document.querySelector('.header__home');
+const leaderboardBtn = document.querySelector('.header__leaderboard');
+
+
 
 // Display a modal
 function displayModal(modal) {
@@ -18,12 +24,16 @@ function closeModal(modal) {
 
 // Close a modal on outside click (generally added to window as an event listener)
 function outsideClick(e, modal) {
+  console.log('firing');
   if (e.target === modal) {
     modal.style.display = 'none';
   }
 }
 
-window.addEventListener('click', outsideClick);
+// TODO: decide whether this is beneficial or not for the end screen modal
+window.addEventListener('click', (e) => {
+  // outsideClick(e, completeModal);
+});
 
 let coordinates = {};
 
@@ -51,6 +61,12 @@ const checkForCharClick = (clickCoordinates) => {
   return charClicked;
 };
 
+homeBtn.addEventListener('click', (e) => {
+  // TODO: reset header images and popup menu UI, and restart (but don't begin running) timer
+  timer.end(runningTimer);
+  timer.reset();
+})
+
 // Event propagation on popup ul element to catch user clicking on list item
 popupMenu.addEventListener('click', (e) => {
   const charClicked = checkForCharClick(coordinates)
@@ -67,6 +83,7 @@ popupMenu.addEventListener('click', (e) => {
           console.log(timer.getCurrentTime());
           // Toggle complete-modal 
           displayModal(completeModal);
+          document.querySelector('.modal__text').textContent = timer.getCurrentTime();
         }
       } else {
         // TODO: Miss error message, make in view module

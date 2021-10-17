@@ -34,11 +34,17 @@ function Timer() {
   // Determine if the timer is currently running
   const isRunning = () => running;
 
+  const reset = () => {
+    elapsed = '0.0';
+    document.querySelector('.timer').textContent = elapsed;
+  };
+
   return {
     begin,
     end,
     getCurrentTime,
     isRunning,
+    reset,
   }
 }
 
