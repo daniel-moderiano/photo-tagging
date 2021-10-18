@@ -1,6 +1,6 @@
 // Firebase config/setup
 import { initializeApp } from "firebase/app";
-import { getFirestore, doc, onSnapshot, query, collection, getDoc, getDocs, orderBy } from 'firebase/firestore';
+import { getFirestore, doc, onSnapshot, query, collection, getDoc, getDocs, orderBy, addDoc } from 'firebase/firestore';
 import { renderLeaderboard } from "./view";
 
 const firebaseConfig = {
@@ -26,8 +26,12 @@ onSnapshot(q, (snapshot) => {
 });
 
 // Add new user document into the users collection
-const addUser = (data) => {
-  // Add user
+const addUser = (name, time) => {
+  const users = collection(db, 'users');
+  return addDoc(users, {
+    name: name,
+    time: time,
+  });
 };
 
 export { addUser };

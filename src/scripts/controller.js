@@ -1,6 +1,7 @@
 import { characters, anyCharsRemaining } from './model';
 import { updateHeaderCards, displayReticleAtCursor, displayPopupMenuAtCursor, updatePopupMenu, removePopupStyling, renderLeaderboard } from './view';
 import Timer from './timer';
+import { addUser } from './leaderboard';
 
 const img = document.querySelector('.img__warp-core');
 const popupMenu = document.querySelector('.popup__list');
@@ -76,6 +77,7 @@ popupMenu.addEventListener('click', (e) => {
           // Toggle complete-modal 
           displayModal(completeModal);
           document.querySelector('.modal__text-time').textContent = ` ${timeFormatted}`;
+          document.querySelector('.modal__text-time').dataset.time = timer.getCurrentTime();
         }
       } else {
         // TODO: Miss error message, make in view module
@@ -123,12 +125,28 @@ cancelBtn.addEventListener('click', () => {
 
 leaderboardBtn.addEventListener('click', () => {
   closeModal(completeModal);
+  if (timer.isRunning()) {
+    timer.end(runningTimer);
+    timer.reset();
+  }
 });
 
 homeBtn.addEventListener('click', (e) => {
   // TODO: reset header images and popup menu UI, and restart (but don't begin running) timer
   timer.end(runningTimer);
   timer.reset();
-})
+});
 
+submitBtn.addEventListener('click', (e) => {
+  // Get user data
+  const name = document.querySelector('#input-name').value;
+  const time = parseFloat(document.querySelector('.modal__text-time').dataset.time);
+
+  // Call async function to add user to leaderboard, then close modal
+  addUser(name, time).then(() => {
+    closeModal(completeModal);
+  }).catch((err) => {
+    console.log(err.message);
+  })
+});
 

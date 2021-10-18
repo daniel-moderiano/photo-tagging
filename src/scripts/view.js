@@ -45,13 +45,15 @@ const renderLeaderboard = (users) => {
   const leaderList = document.querySelector('.leaderboard__list');
   if (users.length !== 0) {
     let html = '';
+    
     // Render leaderboard
     users.forEach((user) => {
       const data = user.data();
+      const timeFormatted = new Date(data.time * 1000).toISOString().substr(15, 4);
       const li = `
         <li class="leaderboard__user">
           <div class="leaderboard__name">${data.name}</div>
-          <div class="leaderboard__time">${data.time}</div>
+          <div class="leaderboard__time">${timeFormatted}</div>
         </li>
       `;
       html += li;
