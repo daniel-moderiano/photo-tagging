@@ -42,26 +42,32 @@ const displayPopupMenuAtCursor = (coordinates) => {
 
 // Takes array of user documents, and converts them into a UI list-style element for leaderboard
 const renderLeaderboard = (users) => {
-  const leaderList = document.querySelector('.leaderboard__list');
+  const leaderTable = document.querySelector('.leaderboard__table');
   if (users.length !== 0) {
     let html = '';
     
     // Render leaderboard
-    users.forEach((user) => {
+    users.forEach((user, index) => {
       const data = user.data();
-      const timeFormatted = new Date(data.time * 1000).toISOString().substr(15, 7);
-      const li = `
-        <li class="leaderboard__user">
-          <div class="leaderboard__name">${data.name}</div>
-          <div class="leaderboard__time">${timeFormatted}</div>
-        </li>
-      `;
-      html += li;
+      const tr = document.createElement('tr');
+
+      // Create basic table row with the user data. Because the data is pre-sorted, the index can be used for the rank column
+      const tdRank = document.createElement('td');
+      tdRank.textContent = index + 1;
+      const tdName = document.createElement('td');
+      tdName.textContent = data.name;
+      const tdTime = document.createElement('td');
+      tdTime.textContent = data.time.toFixed(1);
+
+      tr.appendChild(tdRank);
+      tr.appendChild(tdName);
+      tr.appendChild(tdTime);
+      
+      leaderTable.appendChild(tr);
     });
-    leaderList.innerHTML = html;
   } else {
     // Render a standard message when no recorded users exist
-    leaderList.innerHTML = '<h3 class="leaderboard__msg">Find all the characters to record a score!<h3/>';
+    leaderTable.innerHTML = '<h3 class="leaderboard__msg">Find all the characters to record a score!<h3/>';
   }
 }
 

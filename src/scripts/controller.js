@@ -73,10 +73,9 @@ popupMenu.addEventListener('click', (e) => {
         updatePopupMenu(e.target);
         if (!anyCharsRemaining()) {
           timer.end(runningTimer);
-          const timeFormatted = new Date(timer.getCurrentTime() * 1000).toISOString().substr(15, 4);
           // Toggle complete-modal 
           displayModal(completeModal);
-          document.querySelector('.modal__text-time').textContent = ` ${timeFormatted}`;
+          document.querySelector('.modal__text-time').textContent = ` ${parseFloat(timer.getCurrentTime()).toFixed(1)} s`;
           document.querySelector('.modal__text-time').dataset.time = timer.getCurrentTime();
         }
       } else {
