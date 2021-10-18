@@ -49,7 +49,7 @@ const renderLeaderboard = (users) => {
     // Render leaderboard
     users.forEach((user) => {
       const data = user.data();
-      const timeFormatted = new Date(data.time * 1000).toISOString().substr(15, 4);
+      const timeFormatted = new Date(data.time * 1000).toISOString().substr(15, 7);
       const li = `
         <li class="leaderboard__user">
           <div class="leaderboard__name">${data.name}</div>

@@ -141,10 +141,11 @@ submitBtn.addEventListener('click', (e) => {
   // Get user data
   const name = document.querySelector('#input-name').value;
   const time = parseFloat(document.querySelector('.modal__text-time').dataset.time);
-
+  submitBtn.textContent = 'Submitting...'
   // Call async function to add user to leaderboard, then close modal
   addUser(name, time).then(() => {
     closeModal(completeModal);
+    submitBtn.textContent = 'Submit';
   }).catch((err) => {
     console.log(err.message);
   })
