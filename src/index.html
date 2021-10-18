@@ -63,6 +63,9 @@
         <footer class="footer"><i>Another Night at the Warp Core Café</i><p>- Artwork by Jeff Carlisle</p></footer>
       </section>
       <section id="leaderboard" class="leaderboard">
+        <h2 class="leaderboard__title">
+          Leaderboard
+        </h2>
         <table class="leaderboard__table">
           <tr>
             <th class="header-rank">Rank</th>
@@ -77,19 +80,20 @@
   <div class="modal complete-modal">
     <div class="modal__content">
       <header class="modal__header">
-        <h1>You found everyone!</h1>
+        <h1>You found everyone in<p class="modal__text-time">24</p>seconds!</h1>
       </header>
-      <div class="modal__main">
-        <div class="modal__time">
-          <p>in</p>
-          <p class="modal__text-time">0:24</p>
+      <div class="modal__main">      
+        <p class="modal__text">Enter your name to submit your time</p>
+        <div class="modal__input">
+          <label for="input-name">Name</label>
+          <input type="text" id="input-name" required>
         </div>
         
-        <p class="modal__text">Enter your name to submit your time</p>
-        <label for="input-name">Name</label>
-        <input type="text" id="input-name" placeholder="Name" required>
-        <a class="modal__submit" href="javascript:setTimeout(()=>{window.location = '#leaderboard'}, 500);">Submit score</a>
-        <button class="modal__cancel">Cancel</button>
+        <div class="modal__btns">
+          <a class="modal__submit" href="javascript:setTimeout(()=>{window.location = '#leaderboard'}, 500);">Submit score</a>
+          <button class="modal__cancel">Cancel</button>
+        </div>
+        
       </div>
     </div>
   </div>

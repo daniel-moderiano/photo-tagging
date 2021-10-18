@@ -75,7 +75,7 @@ popupMenu.addEventListener('click', (e) => {
           timer.end(runningTimer);
           // Toggle complete-modal 
           displayModal(completeModal);
-          document.querySelector('.modal__text-time').textContent = ` ${parseFloat(timer.getCurrentTime()).toFixed(1)} s`;
+          document.querySelector('.modal__text-time').textContent = ` ${parseFloat(timer.getCurrentTime()).toFixed(1)} `;
           document.querySelector('.modal__text-time').dataset.time = timer.getCurrentTime();
         }
       } else {
@@ -118,7 +118,6 @@ cancelBtn.addEventListener('click', () => {
   });
   updateHeaderCards();
   removePopupStyling();
-  console.log('done');
 });
 
 
@@ -136,10 +135,16 @@ homeBtn.addEventListener('click', (e) => {
   timer.reset();
 });
 
-submitBtn.addEventListener('click', (e) => {
+submitBtn.addEventListener('click', () => {
   // Get user data
   const name = document.querySelector('#input-name').value;
   const time = parseFloat(document.querySelector('.modal__text-time').dataset.time);
+
+  if (name === "") {
+    // TODO: UI error here
+    throw new Error('Must enter name');
+  }
+
   submitBtn.textContent = 'Submitting...'
   // Call async function to add user to leaderboard, then close modal
   addUser(name, time).then(() => {

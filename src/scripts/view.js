@@ -44,7 +44,7 @@ const displayPopupMenuAtCursor = (coordinates) => {
 const renderLeaderboard = (users) => {
   const leaderTable = document.querySelector('.leaderboard__table');
   if (users.length !== 0) {
-    let html = '';
+    leaderTable.innerHTML = '<tr><th class="header-rank">Rank</th><th class="header-name">Name</th><th class="header-time">Time (seconds)</th></tr>';
     
     // Render leaderboard
     users.forEach((user, index) => {
