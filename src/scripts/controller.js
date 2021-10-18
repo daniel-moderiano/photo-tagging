@@ -1,5 +1,5 @@
 import { characters, anyCharsRemaining } from './model';
-import { updateHeaderCards, displayReticleAtCursor, displayPopupMenuAtCursor, updatePopupMenu, removePopupStyling } from './view';
+import { updateHeaderCards, displayReticleAtCursor, displayPopupMenuAtCursor, updatePopupMenu, removePopupStyling, renderLeaderboard } from './view';
 import Timer from './timer';
 
 const img = document.querySelector('.img__warp-core');
@@ -58,12 +58,6 @@ const checkForCharClick = (clickCoordinates) => {
   });
   return charClicked;
 };
-
-homeBtn.addEventListener('click', (e) => {
-  // TODO: reset header images and popup menu UI, and restart (but don't begin running) timer
-  timer.end(runningTimer);
-  timer.reset();
-})
 
 // Event propagation on popup ul element to catch user clicking on list item
 popupMenu.addEventListener('click', (e) => {
@@ -126,6 +120,15 @@ cancelBtn.addEventListener('click', () => {
   console.log('done');
 });
 
+
 leaderboardBtn.addEventListener('click', () => {
   closeModal(completeModal);
 });
+
+homeBtn.addEventListener('click', (e) => {
+  // TODO: reset header images and popup menu UI, and restart (but don't begin running) timer
+  timer.end(runningTimer);
+  timer.reset();
+})
+
+

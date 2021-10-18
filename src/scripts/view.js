@@ -40,10 +40,34 @@ const displayPopupMenuAtCursor = (coordinates) => {
   popupMenu.style.left = `${coordinates.left - 25}px`;
 };
 
+// Takes array of user documents, and converts them into a UI list-style element for leaderboard
+const renderLeaderboard = (users) => {
+  const leaderList = document.querySelector('.leaderboard__list');
+  if (users.length !== 0) {
+    let html = '';
+    // Render leaderboard
+    users.forEach((user) => {
+      const data = user.data();
+      const li = `
+        <li class="leaderboard__user">
+          <div class="leaderboard__name">${data.name}</div>
+          <div class="leaderboard__time">${data.time}</div>
+        </li>
+      `;
+      html += li;
+    });
+    leaderList.innerHTML = html;
+  } else {
+    // Render a standard message when no recorded users exist
+    leaderList.innerHTML = '<h3 class="leaderboard__msg">Find all the characters to record a score!<h3/>';
+  }
+}
+
 export { 
   updateHeaderCards, 
   displayPopupMenuAtCursor, 
   displayReticleAtCursor,
   updatePopupMenu,
   removePopupStyling,
+  renderLeaderboard,
 };
