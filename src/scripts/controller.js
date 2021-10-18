@@ -1,5 +1,5 @@
 import { characters, anyCharsRemaining } from './model';
-import { updateHeaderCards, displayReticleAtCursor, displayPopupMenuAtCursor, updatePopupMenu, removePopupStyling, renderLeaderboard } from './view';
+import { updateHeaderCards, displayReticleAtCursor, displayPopupMenuAtCursor, updatePopupMenu, removePopupStyling } from './view';
 import Timer from './timer';
 import { addUser } from './leaderboard';
 

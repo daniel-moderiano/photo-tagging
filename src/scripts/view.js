@@ -53,10 +53,13 @@ const renderLeaderboard = (users) => {
 
       // Create basic table row with the user data. Because the data is pre-sorted, the index can be used for the rank column
       const tdRank = document.createElement('td');
+      tdRank.classList.add('table__rank');
       tdRank.textContent = index + 1;
       const tdName = document.createElement('td');
+      tdRank.classList.add('table__name');
       tdName.textContent = data.name;
       const tdTime = document.createElement('td');
+      tdRank.classList.add('table__time');
       tdTime.textContent = data.time.toFixed(1);
 
       tr.appendChild(tdRank);
