@@ -26,6 +26,7 @@ function Timer() {
   // Stops timer
   const end = (interval) => {
     clearInterval(interval);
+    running = false;
   };
 
   // This may not be entirely accurate due to the asynchronous nature of JS, but it should be close. And importantly, should be accurate in the most common use case: after the timer has been stopped

@@ -125,3 +125,7 @@ cancelBtn.addEventListener('click', () => {
   removePopupStyling();
   console.log('done');
 });
+
+leaderboardBtn.addEventListener('click', () => {
+  closeModal(completeModal);
+});
