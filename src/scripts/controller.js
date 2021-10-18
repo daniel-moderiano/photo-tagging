@@ -78,10 +78,10 @@ popupMenu.addEventListener('click', (e) => {
         updatePopupMenu(e.target);
         if (!anyCharsRemaining()) {
           timer.end(runningTimer);
-          console.log(timer.getCurrentTime());
+          const timeFormatted = new Date(timer.getCurrentTime() * 1000).toISOString().substr(15, 4);
           // Toggle complete-modal 
           displayModal(completeModal);
-          document.querySelector('.modal__text').textContent = timer.getCurrentTime();
+          document.querySelector('.modal__text-time').textContent = ` ${timeFormatted}`;
         }
       } else {
         // TODO: Miss error message, make in view module

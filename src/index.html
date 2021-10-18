@@ -58,6 +58,7 @@
         </div>
       </section>
       <section id="leaderboard">
+        <!-- Populate this with fetched firebase data -->
         <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iste aliquid obcaecati voluptatibus doloremque atque vitae! Ullam soluta quod assumenda! Iure, hic voluptatibus! Facere id sapiente possimus qui, cupiditate iste error?</p>
       </section>
     </main>
@@ -65,12 +66,17 @@
   <div class="modal complete-modal">
     <div class="modal__content">
       <header class="modal__header">
-        <h1>Finished!</h1>
+        <h1>You found everyone!</h1>
       </header>
       <div class="modal__main">
-        <p class="modal__text">20:00</p>
-        <label for="modal__input"></label>
-        <input type="text" id="modal__input">
+        <div class="modal__time">
+          <p>in</p>
+          <p class="modal__text-time"></p>
+        </div>
+        
+        <p class="modal__text">Enter your name to submit your time</p>
+        <label for="input-name">Name</label>
+        <input type="text" id="input-name" placeholder="Name">
         <a class="modal__submit" href="#leaderboard">Submit score</a>
         <button class="modal__cancel">Cancel</button>
       </div>

@@ -142,6 +142,7 @@ section:target {
 }
 
 .modal {
+  color: black;
 	display: none;
 	position: fixed;
 	z-index: 1;
@@ -177,6 +178,10 @@ section:target {
     .modal__text {
       color: black;
       font-size: 1rem;
+    }
+
+    .modal__time {
+      display: flex;
     }
   }
 }
