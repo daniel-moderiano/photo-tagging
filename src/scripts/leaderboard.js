@@ -1,6 +1,6 @@
 // Firebase config/setup
 import { initializeApp } from "firebase/app";
-import { getFirestore, doc, onSnapshot, query, collection, getDoc, getDocs } from 'firebase/firestore';
+import { getFirestore, doc, onSnapshot, query, collection, getDoc, getDocs, orderBy } from 'firebase/firestore';
 import { renderLeaderboard } from "./view";
 
 const firebaseConfig = {
@@ -15,7 +15,7 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 // Query all documents in the users collection
-const q = query(collection(db, 'users'));
+const q = query(collection(db, 'users'), orderBy('time'));
 
 // Get realtime updates of leaderboard. Note that snapshot.docs is an array of all the user documents from firestore
 onSnapshot(q, (snapshot) => {
@@ -24,3 +24,10 @@ onSnapshot(q, (snapshot) => {
 (error) => {
   console.log(error.message);
 });
+
+// Add new user document into the users collection
+const addUser = (data) => {
+  // Add user
+};
+
+export { addUser };
