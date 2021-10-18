@@ -1,5 +1,5 @@
 import { characters, anyCharsRemaining } from './model';
-import { updateHeaderCards, displayReticleAtCursor, displayPopupMenuAtCursor, updatePopupMenu } from './view';
+import { updateHeaderCards, displayReticleAtCursor, displayPopupMenuAtCursor, updatePopupMenu, removePopupStyling } from './view';
 import Timer from './timer';
 
 const img = document.querySelector('.img__warp-core');
@@ -9,8 +9,6 @@ const submitBtn = document.querySelector('.modal__submit');
 const cancelBtn = document.querySelector('.modal__cancel');
 const homeBtn = document.querySelector('.header__home');
 const leaderboardBtn = document.querySelector('.header__leaderboard');
-
-
 
 // Display a modal
 function displayModal(modal) {
@@ -101,14 +99,29 @@ window.addEventListener('click', (e) => {
   if (e.target === img) {
     // Ensure the timer is started on first image click only
     if (!timer.isRunning()) {
+      // The following code snippet should be used whenever the timer needs to be started
       runningTimer = timer.begin();
     }
     coordinates = getClickCoordinates(e);
     displayReticleAtCursor(coordinates);
     displayPopupMenuAtCursor(coordinates);   
+
   } else {
     // Remove reticle when clicking outside image, or clicking on the same spot twice
     document.querySelector('.popup__menu').style.display = 'none';
     document.querySelector('.popup__reticle').style.display = 'none';
   }
+});
+
+cancelBtn.addEventListener('click', () => {
+  closeModal(completeModal);
+  // Reset timer to zero but DO NOT start timer again here
+  timer.reset();
+  // Alter found status on all characters, then update header cards and popup menu
+  characters.forEach((char) => {
+    char.toggleFound();
+  });
+  updateHeaderCards();
+  removePopupStyling();
+  console.log('done');
 });

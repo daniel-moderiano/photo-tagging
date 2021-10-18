@@ -5,6 +5,8 @@ const updateHeaderCards = () => {
   characters.forEach((char) => {
     if (char.isFound()) {
       document.querySelector(`[data-name='${char.name}']`).style.opacity = '10%';
+    } else {
+      document.querySelector(`[data-name='${char.name}']`).style.opacity = '100%';
     }
   });
 };
@@ -12,6 +14,13 @@ const updateHeaderCards = () => {
 const updatePopupMenu = (element) => {
   element.style.textDecoration = 'line-through';
   element.style.color = '#646464';
+}
+
+const removePopupStyling = () => {
+  document.querySelectorAll('.popup__list-item').forEach((item) => {
+    item.style.textDecoration = 'none';
+    item.style.color = '#f4f4f4';
+  })
 }
 
 // Sets reticle element to the user's position. 
@@ -36,4 +45,5 @@ export {
   displayPopupMenuAtCursor, 
   displayReticleAtCursor,
   updatePopupMenu,
+  removePopupStyling,
 };
