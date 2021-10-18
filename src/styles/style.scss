@@ -147,8 +147,7 @@ section:target {
 .popup__menu {
   position: absolute;
   display: none;
-  // height: 5rem;
-  // width: 5rem;
+  min-width: 8rem;
   margin-left: 50px;
   background-color: rgb(48, 48, 48);
 
@@ -199,7 +198,7 @@ section:target {
 
 .modal {
   color: var(--light);
-	display: flex;
+	display: none;
 	position: fixed;
 	z-index: 1;
 	left: 0;
