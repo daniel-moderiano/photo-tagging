@@ -1,12 +1,13 @@
 @use 'reset';
 
-@import url('https://fonts.googleapis.com/css?family=Cairo');
+@import url('https://fonts.googleapis.com/css?family=Saira');
 @import url('https://fonts.googleapis.com/css?family=Russo+One');
 
 // Declare global variables here, such as font-stack, primary and secondary colors, etc
 :root {
-  --font-stack: 'Russo One', sans-serif;
+  --font-stack: 'Saira', sans-serif;
   --primary: #2B2B2B;
   --secondary: rgb(32, 32, 36);
+  --light: rgb(245, 245, 245);
 }
 
