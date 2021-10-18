@@ -29,6 +29,20 @@ body {
   height: 100%;
 }
 
+section {
+  // opacity: 0;
+  display: none;
+}
+
+section:target {
+  // opacity: 1;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  // z-index: 10;
+}
+
+
 .char-card {
   height: 100%;
   width: 6rem;
