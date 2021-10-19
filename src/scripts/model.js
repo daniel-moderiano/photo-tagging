@@ -1,7 +1,6 @@
 import Character from "./character";
 
 // Define the preset characters for the warp core img
-
 const waldo = Character('Waldo', 1135, 1026, 78, 120);
 const yoda = Character('Yoda', 1370, 720, 74, 110);
 const walle = Character('Wall·E', 438, 1033, 95, 95);

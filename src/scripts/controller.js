@@ -1,5 +1,5 @@
 import { characters, anyCharsRemaining } from './model';
-import { updateHeaderCards, displayReticleAtCursor, displayPopupMenuAtCursor, updatePopupMenu, removePopupStyling, toggleToast } from './view';
+import { updateHeaderCards, displayReticleAtCursor, displayPopupMenuAtCursor, updatePopupMenu, removePopupStyling, toggleToast, displayModal, closeModal, switchToLeaderboard, switchToImage } from './view';
 import Timer from './timer';
 import { addUser } from './leaderboard';
 
@@ -11,22 +11,10 @@ const cancelBtn = document.querySelector('.modal__cancel');
 const homeBtn = document.querySelector('.header__home');
 const leaderboardBtn = document.querySelector('.header__leaderboard');
 
-// Display a modal
-function displayModal(modal) {
-  modal.style.display = 'flex';
-  // Reset any input field from a previous attempt
-  modal.querySelector('input').value = "";
-}
-
-// Close a modal
-function closeModal(modal) {
-  modal.style.display = 'none';
-}
-
+// Initialise global controller variables
 let coordinates = {};
-
-const timer = Timer();
 let runningTimer;
+const timer = Timer();
 
 // Returns the coordinates of the cursor on click relative to the bounding element (warp core img in this case)
 const getClickCoordinates = (e) => {
@@ -36,7 +24,7 @@ const getClickCoordinates = (e) => {
   return { top: y, left: x };
 }
 
-// Checks for ANY non-found character at location of user's click (coordinates) but does not modify found value
+// Checks for ANY non-found character at location of user's click (coordinates) but does not modify found value on character if successfully at click location
 const checkForCharClick = (clickCoordinates) => {
   let charClicked = [];
   characters.forEach((character) => {
@@ -98,6 +86,7 @@ window.addEventListener('click', (e) => {
   }
 });
 
+
 cancelBtn.addEventListener('click', () => {
   closeModal(completeModal);
   // Reset timer to zero but DO NOT start timer again here
@@ -108,10 +97,8 @@ cancelBtn.addEventListener('click', () => {
   });
   updateHeaderCards();
   removePopupStyling();
-  document.querySelector('.leaderboard').style.display = 'none';
-  document.querySelector('.img').style.display = 'flex';
+  switchToImage();
 });
-
 
 leaderboardBtn.addEventListener('click', () => {
   closeModal(completeModal);
@@ -119,9 +106,7 @@ leaderboardBtn.addEventListener('click', () => {
     timer.end(runningTimer);
     timer.reset();
   }
-
-  document.querySelector('.img').style.display = 'none';
-  document.querySelector('.leaderboard').style.display = 'flex';
+  switchToLeaderboard();
 });
 
 homeBtn.addEventListener('click', () => {
@@ -136,9 +121,7 @@ homeBtn.addEventListener('click', () => {
   });
   updateHeaderCards();
   removePopupStyling();
-  
-  document.querySelector('.img').style.display = 'flex';
-  document.querySelector('.leaderboard').style.display = 'none';
+  switchToImage();
 });
 
 submitBtn.addEventListener('click', () => {
@@ -156,8 +139,7 @@ submitBtn.addEventListener('click', () => {
   addUser(name, time).then(() => {
     closeModal(completeModal);
     submitBtn.textContent = 'Submit';
-    document.querySelector('.img').style.display = 'none';
-    document.querySelector('.leaderboard').style.display = 'flex';
+    switchToLeaderboard();
   }).catch((err) => {
     console.log(err.message);
   })

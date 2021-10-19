@@ -96,7 +96,31 @@ const toggleToast = (message, typeOfToast) => {
   setTimeout(() => {
     toast.classList.remove('toast--visible')
   }, 1000);
+};
+
+// Display a modal
+const displayModal = (modal) => {
+  modal.style.display = 'flex';
+  // Reset any input field from a previous attempt
+  modal.querySelector('input').value = "";
 }
+
+// Close a modal
+const closeModal = (modal) => {
+  modal.style.display = 'none';
+}
+
+// Call this to 'navigate' to the leaderboard page
+const switchToLeaderboard = () => {
+  document.querySelector('.img').style.display = 'none';
+  document.querySelector('.leaderboard').style.display = 'flex';
+};
+
+// Call this to 'navigate' to the image/home page
+const switchToImage = () => {
+  document.querySelector('.leaderboard').style.display = 'none';
+  document.querySelector('.img').style.display = 'flex';
+};
 
 export { 
   updateHeaderCards, 
@@ -106,4 +130,8 @@ export {
   removePopupStyling,
   renderLeaderboard,
   toggleToast,
+  displayModal,
+  closeModal,
+  switchToImage,
+  switchToLeaderboard,
 };
