@@ -118,6 +118,8 @@ cancelBtn.addEventListener('click', () => {
   });
   updateHeaderCards();
   removePopupStyling();
+  document.querySelector('.leaderboard').style.display = 'none';
+  document.querySelector('.img').style.display = 'flex';
 });
 
 
@@ -127,12 +129,26 @@ leaderboardBtn.addEventListener('click', () => {
     timer.end(runningTimer);
     timer.reset();
   }
+
+  document.querySelector('.img').style.display = 'none';
+  document.querySelector('.leaderboard').style.display = 'flex';
 });
 
-homeBtn.addEventListener('click', (e) => {
-  // TODO: reset header images and popup menu UI, and restart (but don't begin running) timer
+homeBtn.addEventListener('click', () => {
   timer.end(runningTimer);
   timer.reset();
+
+  // Alter found status on all characters, then update header cards and popup menu
+  characters.forEach((char) => {
+    if (char.isFound()) {
+      char.toggleFound();
+    }
+  });
+  updateHeaderCards();
+  removePopupStyling();
+  
+  document.querySelector('.img').style.display = 'flex';
+  document.querySelector('.leaderboard').style.display = 'none';
 });
 
 submitBtn.addEventListener('click', () => {
@@ -150,6 +166,8 @@ submitBtn.addEventListener('click', () => {
   addUser(name, time).then(() => {
     closeModal(completeModal);
     submitBtn.textContent = 'Submit';
+    document.querySelector('.img').style.display = 'none';
+    document.querySelector('.leaderboard').style.display = 'flex';
   }).catch((err) => {
     console.log(err.message);
   })
