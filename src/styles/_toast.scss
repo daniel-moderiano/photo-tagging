@@ -1,8 +1,40 @@
 .toast {
   position: fixed;
-  top: 20px;
+  bottom: 0;
   left: 0;
   right: 0;
   margin: auto;
   max-width: 400px;
+  visibility: hidden;
+  opacity: 0;
+
+  padding: 0.5rem;
+  background-color: #ccc;
+  color: #333333;
+  text-align: center;
+
+  border: 1px solid #aaaaaa;
+  border-radius: 5px;
+  box-shadow: 0 0 10 rgba(0, 0, 0, 0.2);
+  transition: opacity 0.2s, bottom 0.2s, visibility 0.2s;
+}
+
+.toast--visible {
+  bottom: 40px;
+  opacity: 1;
+  visibility: visible;
+}
+
+.toast--success {
+  // green
+  background-color: rgb(46, 129, 52);
+  color: var(--light);
+  border: 1px solid #246b2d;
+}
+
+.toast--error {
+  // red
+  background-color: rgb(182, 51, 46);
+  color: var(--light);
+  border: 1px solid #9e2e2e;
 }

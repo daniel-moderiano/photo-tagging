@@ -74,6 +74,18 @@ const renderLeaderboard = (users) => {
   }
 }
 
+const toggleToast = (message, typeOfToast) => {
+  const toast = document.querySelector('.toast');
+  toast.textContent = message;
+  toast.className = 'toast toast--visible'
+  toast.classList.add(`toast--${typeOfToast}`);
+
+  // Remove timeout after specified time
+  setTimeout(() => {
+    toast.classList.remove('toast--visible')
+  }, 1000);
+}
+
 export { 
   updateHeaderCards, 
   displayPopupMenuAtCursor, 
@@ -81,4 +93,5 @@ export {
   updatePopupMenu,
   removePopupStyling,
   renderLeaderboard,
+  toggleToast,
 };

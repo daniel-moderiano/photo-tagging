@@ -1,5 +1,5 @@
 import { characters, anyCharsRemaining } from './model';
-import { updateHeaderCards, displayReticleAtCursor, displayPopupMenuAtCursor, updatePopupMenu, removePopupStyling } from './view';
+import { updateHeaderCards, displayReticleAtCursor, displayPopupMenuAtCursor, updatePopupMenu, removePopupStyling, toggleToast } from './view';
 import Timer from './timer';
 import { addUser } from './leaderboard';
 
@@ -132,6 +132,7 @@ leaderboardBtn.addEventListener('click', () => {
 
   document.querySelector('.img').style.display = 'none';
   document.querySelector('.leaderboard').style.display = 'flex';
+  toggleToast('Hello toast', 'success');
 });
 
 homeBtn.addEventListener('click', () => {
@@ -149,6 +150,8 @@ homeBtn.addEventListener('click', () => {
   
   document.querySelector('.img').style.display = 'flex';
   document.querySelector('.leaderboard').style.display = 'none';
+
+  toggleToast('Hello toast', 'error');
 });
 
 submitBtn.addEventListener('click', () => {
