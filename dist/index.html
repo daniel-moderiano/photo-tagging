@@ -8,8 +8,9 @@
 <script defer src="main.js"></script><link href="main.css" rel="stylesheet"></head>
 <body>
   <div class="container">
+
     <header class="header">
-      <h1 class="header__title">Photo tagging app</h1>
+      <h1 class="header__title">Can you find these patrons?</h1>
       <div class="header__chars">
         <div class="char-card">
           <img src="images/514187cbcc0a57453e22.png" alt="Waldo robot" class="char-img" data-name="Waldo">
@@ -32,10 +33,15 @@
           <h2 class="char-name">Wall·E</h2>
         </div>
       </div>
-      <button type="button">Home</button>
+      <div class="timer">0.0</div>
+      <div class="header__btns">
+        <button class="header__home">Play Again</button>
+        <button class="header__leaderboard">Leaderboard</button>
+      </div>
     </header>
+
     <main class="main">
-      <section class="img">
+      <section class="img" id="home">
         <div class="img-container">
           <img class="img__warp-core" src="images/a8e6a2f9269a07048a41.jpg" alt="Warp Core Cafe art featuring patrons from all over scince fiction and other media">
           <div class="popup__reticle">
@@ -54,8 +60,37 @@
             </ul>
           </div>
         </div>
+        <footer class="footer"><i>Another Night at the Warp Core Café</i><p>- Artwork by Jeff Carlisle</p></footer>
+      </section>
+
+      <section id="leaderboard" class="leaderboard">
+        <h2 class="leaderboard__title">
+          Leaderboard
+        </h2>
+        <h3 class="leaderboard__subtitle">Find all the characters to record a score!</h3>
+        <table class="leaderboard__table"></table>
       </section>
     </main>
   </div>
+  
+  <div class="modal complete-modal">
+    <div class="modal__content">
+      <header class="modal__header">
+        <h1>You found everyone in<p class="modal__text-time"></p>seconds!</h1>
+      </header>
+      <div class="modal__main">      
+        <p class="modal__text">Enter your name to submit your time</p>
+        <div class="modal__input">
+          <label for="input-name">Name</label>
+          <input type="text" id="input-name" required>
+        </div>
+        <div class="modal__btns">
+          <button class="modal__submit">Submit score</button>
+          <button class="modal__cancel">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="toast"></div>
 </body>
 </html>
