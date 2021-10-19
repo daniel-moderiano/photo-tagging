@@ -35,6 +35,7 @@ function Timer() {
   // Determine if the timer is currently running
   const isRunning = () => running;
 
+  // Set elapsed to 0 internally and on the DOM
   const reset = () => {
     elapsed = '0.0';
     document.querySelector('.timer').textContent = elapsed;
