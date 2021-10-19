@@ -1,0 +1,181 @@
+/*!****************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/styles/style.scss ***!
+  \****************************************************************************************************************/
+@import url(https://fonts.googleapis.com/css?family=Cairo);
+/*!********************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/styles/style.scss (1) ***!
+  \********************************************************************************************************************/
+@import url(https://fonts.googleapis.com/css?family=Russo+One);
+/*!********************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/styles/style.scss (2) ***!
+  \********************************************************************************************************************/
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+:root {
+  --font-stack: "Russo One", sans-serif;
+}
+
+body {
+  width: 100%;
+  height: 100vh;
+  background-color: #615f69;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.header {
+  z-index: 1;
+  background-color: #36353a;
+  height: 7rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header__chars {
+  display: flex;
+  height: 100%;
+}
+
+.char-card {
+  height: 100%;
+  width: 6rem;
+  margin: 0 0.5rem;
+  padding-top: 0.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-direction: column;
+}
+
+.char-img {
+  height: 70%;
+}
+
+.main {
+  margin-top: 7rem;
+}
+
+.img .img-container {
+  width: 1200px;
+  position: relative;
+}
+.img .img-container img {
+  width: 100%;
+}
+
+.popup__reticle {
+  display: none;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  height: 50px;
+  width: 50px;
+  position: absolute;
+}
+
+.popup__menu {
+  position: absolute;
+  display: none;
+  margin-left: 50px;
+  background-color: #303030;
+}
+.popup__menu ul li {
+  font-size: 1rem;
+  padding: 1rem;
+}
+.popup__menu ul li:hover {
+  background-color: #5f5f5f;
+  cursor: pointer;
+}
+
+[data-id="0"] {
+  width: 50%;
+  height: 50%;
+  border-top: 2px solid white;
+  border-left: 2px solid white;
+}
+
+[data-id="1"] {
+  width: 50%;
+  height: 50%;
+  border-top: 2px solid white;
+  border-right: 2px solid white;
+  place-self: start end;
+}
+
+[data-id="2"] {
+  width: 50%;
+  height: 50%;
+  border-left: 2px solid white;
+  border-bottom: 2px solid white;
+  place-self: end start;
+}
+
+[data-id="3"] {
+  width: 50%;
+  height: 50%;
+  border-right: 2px solid white;
+  border-bottom: 2px solid white;
+  place-self: end end;
+}
+
+/*# sourceMappingURL=main.css.map*/
