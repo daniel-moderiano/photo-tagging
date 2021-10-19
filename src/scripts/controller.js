@@ -3,6 +3,7 @@ import { updateHeaderCards, displayReticleAtCursor, displayPopupMenuAtCursor, up
 import Timer from './timer';
 import { addUser } from './leaderboard';
 
+// Initialise global controller variables
 const img = document.querySelector('.img__warp-core');
 const popupMenu = document.querySelector('.popup__list');
 const completeModal = document.querySelector('.complete-modal');
@@ -11,7 +12,6 @@ const cancelBtn = document.querySelector('.modal__cancel');
 const homeBtn = document.querySelector('.header__home');
 const leaderboardBtn = document.querySelector('.header__leaderboard');
 
-// Initialise global controller variables
 let coordinates = {};
 let runningTimer;
 const timer = Timer();
