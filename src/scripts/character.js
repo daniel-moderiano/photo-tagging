@@ -1,6 +1,7 @@
 // Use a factory function to generate character objects with data about their location, whether they have yet been found, and methods to determine when/if they are clicked/found
 function Character(name, top, left, width, height) {
 
+  // Found status can be toggled and returned below, to then activate other actions dependent on it
   let found = false;
 
   const isFound = () => {
@@ -15,6 +16,7 @@ function Character(name, top, left, width, height) {
     }
   }
 
+  // Min and max defined by the set width and height of each character (based on fixed images size)
   const minTop = top;
   const minLeft = left;
   const maxTop = minTop + height;
