@@ -14,25 +14,14 @@ const leaderboardBtn = document.querySelector('.header__leaderboard');
 // Display a modal
 function displayModal(modal) {
   modal.style.display = 'flex';
+  // Reset any input field from a previous attempt
+  modal.querySelector('input').value = "";
 }
 
 // Close a modal
 function closeModal(modal) {
   modal.style.display = 'none';
 }
-
-// Close a modal on outside click (generally added to window as an event listener)
-function outsideClick(e, modal) {
-  console.log('firing');
-  if (e.target === modal) {
-    modal.style.display = 'none';
-  }
-}
-
-// TODO: decide whether this is beneficial or not for the end screen modal
-window.addEventListener('click', (e) => {
-  // outsideClick(e, completeModal);
-});
 
 let coordinates = {};
 
@@ -68,7 +57,8 @@ popupMenu.addEventListener('click', (e) => {
       if (e.target.dataset.name === charClicked[0]) {
         const charFound = characters.filter((char) => char.name === charClicked[0]);
         charFound[0].toggleFound();
-        // TODO: Found success message, make in view module
+        
+        toggleToast('Found one!', 'success');
         // Toggle UI on popup menu itself
         updatePopupMenu(e.target);
         if (!anyCharsRemaining()) {
@@ -79,10 +69,10 @@ popupMenu.addEventListener('click', (e) => {
           document.querySelector('.modal__text-time').dataset.time = timer.getCurrentTime();
         }
       } else {
-        // TODO: Miss error message, make in view module
+        toggleToast('Hmm, not there...', 'error');
       }
     } else {
-      // TODO: Miss error message, make in view module
+      toggleToast('Hmm, not there...', 'error');
     }
     updateHeaderCards();
   }
@@ -132,7 +122,6 @@ leaderboardBtn.addEventListener('click', () => {
 
   document.querySelector('.img').style.display = 'none';
   document.querySelector('.leaderboard').style.display = 'flex';
-  toggleToast('Hello toast', 'success');
 });
 
 homeBtn.addEventListener('click', () => {
@@ -150,8 +139,6 @@ homeBtn.addEventListener('click', () => {
   
   document.querySelector('.img').style.display = 'flex';
   document.querySelector('.leaderboard').style.display = 'none';
-
-  toggleToast('Hello toast', 'error');
 });
 
 submitBtn.addEventListener('click', () => {
@@ -160,7 +147,7 @@ submitBtn.addEventListener('click', () => {
   const time = parseFloat(document.querySelector('.modal__text-time').dataset.time);
 
   if (name === "") {
-    // TODO: UI error here
+    toggleToast('Name cannot be left blank', 'error');
     throw new Error('Must enter name');
   }
 
