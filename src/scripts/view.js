@@ -4,18 +4,20 @@ import { characters } from "./model";
 const updateHeaderCards = () => {
   characters.forEach((char) => {
     if (char.isFound()) {
-      document.querySelector(`[data-name='${char.name}']`).style.opacity = '10%';
+      document.querySelector(`[data-name='${char.name}']`).style.opacity = '0.1';
     } else {
-      document.querySelector(`[data-name='${char.name}']`).style.opacity = '100%';
+      document.querySelector(`[data-name='${char.name}']`).style.opacity = '1';
     }
   });
 };
 
+// Cross off each name for characters found to aid user through the puzzle
 const updatePopupMenu = (element) => {
   element.style.textDecoration = 'line-through';
   element.style.color = '#646464';
 }
 
+// Resets the popup menu styling to normal; used on puzzle restart
 const removePopupStyling = () => {
   document.querySelectorAll('.popup__list-item').forEach((item) => {
     item.style.textDecoration = 'none';
@@ -43,8 +45,15 @@ const displayPopupMenuAtCursor = (coordinates) => {
 // Takes array of user documents, and converts them into a UI list-style element for leaderboard
 const renderLeaderboard = (users) => {
   const leaderTable = document.querySelector('.leaderboard__table');
+  const leaderboardSubtitle = document.querySelector('.leaderboard__subtitle');
+
+  // users.length will  be >0 when there is at least one recorded high score
   if (users.length !== 0) {
+    // Render the users table
     leaderTable.innerHTML = '<tr><th class="header-rank">Rank</th><th class="header-name">Name</th><th class="header-time">Time (seconds)</th></tr>';
+
+    // Remove subtitle when scores exist
+    leaderboardSubtitle.style.display = 'none';
     
     // Render leaderboard
     users.forEach((user, index) => {
@@ -55,32 +64,35 @@ const renderLeaderboard = (users) => {
       const tdRank = document.createElement('td');
       tdRank.classList.add('table__rank');
       tdRank.textContent = index + 1;
+
       const tdName = document.createElement('td');
       tdRank.classList.add('table__name');
       tdName.textContent = data.name;
+
       const tdTime = document.createElement('td');
       tdRank.classList.add('table__time');
-      tdTime.textContent = data.time.toFixed(1);
+      tdTime.textContent = data.time;
 
       tr.appendChild(tdRank);
       tr.appendChild(tdName);
       tr.appendChild(tdTime);
-      
       leaderTable.appendChild(tr);
     });
   } else {
-    // Render a standard message when no recorded users exist
-    leaderTable.innerHTML = '<h3 class="leaderboard__msg">Find all the characters to record a score!<h3/>';
+    // Render a standard message when no recorded users exist, and remove the blank table
+    leaderTable.innerHTML = '';
+    document.querySelector('.leaderboard__subtitle').style.display = 'block';
   }
 }
 
+// Function to control toast notifications. Available types are error and success
 const toggleToast = (message, typeOfToast) => {
   const toast = document.querySelector('.toast');
   toast.textContent = message;
   toast.className = 'toast toast--visible'
   toast.classList.add(`toast--${typeOfToast}`);
 
-  // Remove timeout after specified time
+  // Toast will fade out after 1 second
   setTimeout(() => {
     toast.classList.remove('toast--visible')
   }, 1000);
